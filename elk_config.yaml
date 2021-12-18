@@ -1,0 +1,6 @@
+---
+  - hosts: Servers
+    become: True
+    
+    roles:
+     - elk
