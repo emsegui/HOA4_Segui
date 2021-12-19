@@ -1,5 +1,6 @@
 --- 
-# Install Logstash
+# Install Logstash on Ubuntu
+
   - name: Install Logstash on Ubuntu
     apt: 
       name: logstash
@@ -20,7 +21,7 @@
     systemd: state=started name=logstash
     when: ansible_distribution == "Ubuntu"
 
-
+# Install Logstash on CentOS
   - name: Install Logstash on CentOS
     dnf:
       name: logstash

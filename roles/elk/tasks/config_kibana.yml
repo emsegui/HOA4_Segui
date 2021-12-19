@@ -1,5 +1,5 @@
 ---
-# install Kibana
+# Install Kibana on Ubuntu
 
   - name: Install Kibana on Ubuntu
     apt:
@@ -16,6 +16,8 @@
       name: kibana
       enabled: yes
     when: ansible_distribution == "Ubuntu"
+
+# Install Kibana on CentOS
 
   - name: Install Kibana on CentOS
     yum:
