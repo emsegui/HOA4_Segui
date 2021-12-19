@@ -1,5 +1,5 @@
 ---
-  - hosts: Servers
+  - hosts: Ubuntu, CentOS
     become: True
     
     roles:

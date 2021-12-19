@@ -3,77 +3,21 @@
 
 # install java 
 
-  - name: Install Java on Ubuntu
-    apt:
-      name: openjdk-8-jre-headless
-      state: latest
-      update_cache: yes
-    when: ansible_distribution == "Ubuntu"
-
-  - name: Install Java on CentOS
-    dnf:
-      name: java-1.8.0-openjdk-devel
-      state: latest
-      update_cache: yes
-    when: ansible_distribution == "CentOS"
+  - include: config_java.yml
 
 # install nginx
 
-  - name: Install Nginx on Ubuntu
-    apt: 
-      name: nginx
-      state: latest
-      update_cache: yes
-    when: ansible_distribution == "Ubuntu"
-
-  - name: Install Nginx on CentOS
-    dnf:
-      name: epel-release, nginx
-      state: latest
-      update_cache: yes
-    when: ansible_distribution == "CentOS"
+  - include: config_nginx.yml
 
 # install Elasticsearch
-  # GPG Key
-  - name: Adding Elastic Search GPG Key on Ubuntu
-    apt_key: 
-      url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
-      state: present
-    when: ansible_distribution == "Ubuntu"
-
-  - name: Adding Elastic Search GPG Key on CentOS
-    rpm_key:
-      key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
-      state: present
-    when: ansible_distribution == "CentOS"
- 
- # Installation
-  - shell: echo "deb https://artifacts.elastic.com/packages/7.x/apt stable main", tee -a /etc/apt/sources.list.d/elastic-7.x.list
   
-  - name: Transport key on Ubuntu
-    apt:
-      name: apt-transport-https
-      update_cache: yes
-    when: ansible_distribution == "Ubuntu"
-  
-  - name: Installing Elastic Search on Ubuntu  
-    apt: 
-      name: elasticsearch
-    when: ansible_distribution == "Ubuntu"
+  - include: config_elasticsearch.yml
 
 
 # install Kibana
 
-  - name: Install Kibana on Ubuntu
-    apt: 
-      name: kibana
-      state: started
-    when: ansible_distribution == "Ubuntu"
+  - include: config_kibana.yml
 
-
-  - name: Install Kibana on CentOS
-    dnf: 
-      name: kibana
-      state: latest
-    when: ansible_distribution == "CentOS"
-
+# install Logstash
+   
+  - include: config_logstash.yml
